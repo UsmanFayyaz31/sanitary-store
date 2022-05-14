@@ -6,7 +6,7 @@ function App() {
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("/api/users")
+    fetch("/api/users/")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
