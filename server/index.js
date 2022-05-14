@@ -1,15 +1,30 @@
 const path = require("path");
 const express = require("express");
+const mongoose = require("mongoose");
 
+const routes = require("../routes/api");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+mongoose.connect(
+  "mongodb+srv://usmanfayyaz31:usmanfayyaz5336@cluster0.0xxcz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
+mongoose.connection.on("connected", () => {
+  console.log("Mongoose is connected!!!!");
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
+app.use("/api", routes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
