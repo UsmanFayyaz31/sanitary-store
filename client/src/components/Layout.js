@@ -17,7 +17,7 @@ const Layout = (props) => {
   return (
     <div id="layout-wrapper">
       {header && <Header />}
-      <div style={{ marginTop: "60px" }}>{props.children}</div>
+      <div className="body-content">{props.children}</div>
     </div>
   );
 };

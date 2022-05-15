@@ -103,7 +103,7 @@ const Header = () => {
             className="login-button"
             onClick={() => history.push(SIGN_IN)}
           >
-            Login
+            LOGIN
           </Button>
           <ShoppingCartIcon />
         </div>
