@@ -1,0 +1,12 @@
+.no-product-container {
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .no-product-image {
+    width: 195px;
+    height: 195px;
+  }
+}

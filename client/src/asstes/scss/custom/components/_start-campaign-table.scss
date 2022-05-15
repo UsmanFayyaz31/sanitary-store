@@ -1,0 +1,117 @@
+.status-container {
+  display: flex;
+  // width: 30%;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+
+  .danger-color {
+    div {
+      background-color: $danger;
+    }
+
+    p {
+      color: $danger;
+    }
+  }
+
+  .success-color {
+    div {
+      background-color: $success;
+    }
+
+    p {
+      color: $success;
+    }
+  }
+
+  .primary-color {
+    div {
+      background-color: #0032ff;
+    }
+
+    p {
+      color: #0032ff;
+    }
+  }
+
+  .spinner-text {
+    text-align: center;
+
+    .status-index {
+      border-radius: 50%;
+      width: 1.4rem;
+      height: 1.4rem;
+      margin: auto;
+    }
+
+    p {
+      margin: 0px;
+    }
+  }
+}
+
+.start-campaign-table {
+  width: 100%;
+  text-align: center;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0px 5px;
+
+  .margin-bottom-zero {
+    p {
+      margin-bottom: 0px;
+    }
+  }
+
+  tbody {
+    td {
+      padding: 8px 2px;
+
+      .error-icon-container {
+        display: flex;
+        margin-right: 2px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        p {
+          color: red;
+          margin-bottom: 0px;
+          font-size: 11px;
+        }
+
+        .spinner-grow {
+          width: 1.4rem;
+          height: 1.4rem;
+        }
+      }
+
+      .error-message {
+        color: red;
+      }
+
+      .close-icon {
+        font-size: 15px;
+        margin-left: 5px;
+        color: red;
+
+        &:hover {
+          cursor: pointer;
+          background-color: red;
+          color: white;
+          border-radius: 10px;
+        }
+      }
+    }
+
+    .bold-red {
+      font-weight: 600;
+      color: red;
+    }
+
+    .stripped {
+      background-color: #f8f9fa;
+    }
+  }
+}

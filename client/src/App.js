@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { Switch, Route } from "react-router";
+import { Switch } from "react-router-dom";
+
 import "./App.css";
 import Layout from "./components/Layout";
 import {
@@ -8,8 +9,9 @@ import {
   unAuthenticatedRoutes,
 } from "./components/routes/allRoutes";
 import Authmiddleware from "./components/routes/middleware/AuthMiddleware";
+import "./asstes/scss/theme.scss";
 
-function App() {
+const App = () => {
   return (
     <Fragment>
       <Switch>
@@ -45,6 +47,6 @@ function App() {
       </Switch>
     </Fragment>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,23 @@
+//Fonts
+@import "custom/fonts/fonts";
+
+//Core files
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "variables";
+@import "./node_modules/bootstrap/scss/mixins.scss";
+
+// Structure
+@import "custom/structure/topbar";
+@import "custom/structure/vertical";
+
+// Components
+@import "custom/components/waves";
+@import "custom/components/avatar";
+@import "custom/components/accordion";
+@import "custom/components/helper";
+@import "custom/components/under-construction";
+@import "custom/components/start-campaign-table";
+@import "custom/components/initiation-tab";
+
+// Pages

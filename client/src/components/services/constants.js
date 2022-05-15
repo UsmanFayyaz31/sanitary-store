@@ -6,3 +6,7 @@ export const CART = "/cart";
 
 //un-authenticated routes
 export const HOME = "/";
+export const ABOUT_US = "/about-us";
+export const BRANDS = "/brands";
+export const CAREER = "/career";
+export const CONTACT_US = "/contact-us";
