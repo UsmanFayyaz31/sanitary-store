@@ -1,36 +1,49 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { Fragment } from "react";
+import { Switch, Route } from "react-router";
 import "./App.css";
+import Layout from "./components/Layout";
+import {
+  authenticatedRoutes,
+  authenticationRoutes,
+  unAuthenticatedRoutes,
+} from "./components/routes/allRoutes";
+import Authmiddleware from "./components/routes/middleware/AuthMiddleware";
 
 function App() {
-  const [data, setData] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch("/api/users/")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <Fragment>
+      <Switch>
+        {authenticationRoutes.map((route, idx) => (
+          <Authmiddleware
+            path={route.path}
+            layout={Layout}
+            component={route.component}
+            key={idx}
+            isAuthProtected={false}
+          />
+        ))}
 
-        {data.length === 0 ? (
-          <p>Loading...</p>
-        ) : (
-          data.map((user, idx) => {
-            return (
-              <div key={idx}>
-                <p>{user.username + "  " + user.email}</p>
-              </div>
-            );
-          })
-        )}
-      </header>
-    </div>
+        {authenticatedRoutes.map((route, idx) => (
+          <Authmiddleware
+            path={route.path}
+            layout={Layout}
+            component={route.component}
+            key={idx}
+            isAuthProtected={true}
+          />
+        ))}
+
+        {unAuthenticatedRoutes.map((route, idx) => (
+          <Authmiddleware
+            path={route.path}
+            layout={Layout}
+            component={route.component}
+            key={idx}
+            isAuthProtected={false}
+          />
+        ))}
+      </Switch>
+    </Fragment>
   );
 }
 
