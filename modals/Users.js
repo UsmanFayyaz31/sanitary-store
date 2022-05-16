@@ -2,12 +2,15 @@ var mongoose = require("mongoose");
 
 var UserSchema = new mongoose.Schema(
   {
-    username: {
+    phoneNumber: {
       type: String,
       lowercase: true,
-      unique: true,
+      unique: [true, "Phone number already exist."],
       required: [true, "can't be blank"],
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      match: [
+        /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+        "is invalid",
+      ],
       index: true,
     },
     email: {
@@ -19,6 +22,10 @@ var UserSchema = new mongoose.Schema(
       index: true,
     },
     password: String,
+    role: {
+      type: String,
+      required: [true, "can't be blank"],
+    },
   },
   { timestamps: true }
 );
