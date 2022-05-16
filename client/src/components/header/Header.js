@@ -16,6 +16,7 @@ const Header = () => {
   const history = useHistory();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
 
   const toggle = (tab) => {
     if (tab === "") history.push(HOME);
@@ -25,10 +26,19 @@ const Header = () => {
     else if (tab === "contact-us") history.push(CONTACT_US);
   };
 
+  const getUser = () => {
+    const user = localStorage.getItem("authUser");
+
+    if (JSON.parse(user)) setIsLogin(true);
+    else setIsLogin(false);
+  };
+
   useEffect(() => {
     const pathSlug = location.pathname.slice(1);
 
     if (activeTab !== pathSlug) setActiveTab(pathSlug);
+    getUser();
+    window.addEventListener("storage", getUser);
   }, []);
 
   return (
@@ -99,12 +109,25 @@ const Header = () => {
         </div>
 
         <div className="login-cart-container">
-          <Button
-            className="login-button"
-            onClick={() => history.push(SIGN_IN)}
-          >
-            LOGIN
-          </Button>
+          {isLogin ? (
+            <Button
+              className="login-button"
+              onClick={() => {
+                localStorage.removeItem("authUser");
+                window.dispatchEvent(new Event("storage"));
+                history.push(HOME);
+              }}
+            >
+              LOGOUT
+            </Button>
+          ) : (
+            <Button
+              className="login-button"
+              onClick={() => history.push(SIGN_IN)}
+            >
+              LOGIN
+            </Button>
+          )}
           <ShoppingCartIcon />
         </div>
       </div>
