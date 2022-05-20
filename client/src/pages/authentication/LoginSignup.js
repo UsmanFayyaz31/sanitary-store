@@ -8,6 +8,7 @@ import {
   SIGN_IN_API,
   SIGN_UP_API,
 } from "../../components/services/constants";
+import LoginBackground from "../../assets/images/login-background.jpg";
 
 const LoginSignup = () => {
   const history = useHistory();
@@ -73,8 +74,11 @@ const LoginSignup = () => {
   };
 
   return (
-    <div className="content-container">
-      <h1 className="login-title">LOGIN / SIGN UP</h1>
+    <div
+      className="content-container"
+      style={{ backgroundImage: `url(${LoginBackground})` }}
+    >
+      <h1 className="bordered-title login-title">LOGIN / SIGN UP</h1>
       <div className="login-signup-container">
         <Container>
           <Row className="forms-container">

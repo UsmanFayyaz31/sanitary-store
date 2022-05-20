@@ -4,7 +4,11 @@
 
 .body-content {
   margin-top: 60px;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
+
+  .row {
+    width: 100%;
+  }
 }
 
 .react-bootstrap-table-page-btns-ul {

@@ -1,18 +1,24 @@
+.bordered-title {
+  border: 2px solid #1ec4c4;
+  border-radius: 20px;
+  background-color: white;
+  padding: 10px 20px;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
 .content-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   min-height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 
   .login-title {
-    border: 2px solid #1ec4c4;
-    border-radius: 20px;
-    background-color: white;
-    padding: 10px 20px;
     position: relative;
     top: 31px;
-    margin-bottom: 0px;
   }
 
   .login-signup-container {
