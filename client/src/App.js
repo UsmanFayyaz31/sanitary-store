@@ -9,7 +9,7 @@ import {
   unAuthenticatedRoutes,
 } from "./components/routes/allRoutes";
 import Authmiddleware from "./components/routes/middleware/AuthMiddleware";
-import "./asstes/scss/theme.scss";
+import "./assets/scss/theme.scss";
 
 const App = () => {
   return (

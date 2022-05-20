@@ -1,0 +1,28 @@
+.brand-container {
+  display: flex;
+  justify-content: center;
+  margin: 25px;
+}
+
+.brand-of-month-container {
+  // margin-top: 20px;
+
+  .brand-image-container {
+    text-align: right;
+
+    .brand-image {
+      width: 80%;
+      height: 320px;
+      object-fit: cover;
+    }
+  }
+}
+
+.brand-logo-container {
+  align-items: center;
+
+  .brand-logo {
+    width: 100%;
+    object-fit: contain;
+  }
+}
