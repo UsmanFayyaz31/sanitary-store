@@ -1,0 +1,33 @@
+.department-container {
+  justify-content: center;
+
+  .department-content {
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #1ec4c4;
+    margin: 20px;
+    position: relative;
+    bottom: 0px;
+    padding: 0px;
+    transition: all 0.25s ease;
+
+    &:hover {
+      box-shadow: 10px 10px 6px -1px rgba(168, 168, 168, 1);
+      bottom: 3px;
+    }
+
+    .department {
+      padding-top: 10px;
+
+      h3 {
+        margin-top: 0.5rem;
+      }
+
+      .department-images {
+        width: 80%;
+        height: 200px;
+        object-fit: contain;
+      }
+    }
+  }
+}
