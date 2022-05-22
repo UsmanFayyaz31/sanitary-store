@@ -17,3 +17,4 @@ export const CONTACT_US = "/contact-us";
 //endPoints
 export const SIGN_IN_API = BASE_URL + "/api/sign-in/";
 export const SIGN_UP_API = BASE_URL + "/api/sign-up/";
+export const PRODUCT = BASE_URL + "/api/product/";
