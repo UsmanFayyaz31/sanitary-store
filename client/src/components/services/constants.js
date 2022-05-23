@@ -6,6 +6,7 @@ export const SIGN_IN = "/sign-in";
 
 //authenticated routes
 export const CART = "/cart";
+export const ADMIN_PRODUCTS = "/admin-products";
 
 //un-authenticated routes
 export const HOME = "/";

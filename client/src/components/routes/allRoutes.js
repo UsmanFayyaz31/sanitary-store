@@ -1,3 +1,4 @@
+import AdminProducts from "../../pages/authenticated/AdminProducts";
 import Cart from "../../pages/authenticated/Cart";
 import LoginSignup from "../../pages/authentication/LoginSignup";
 import AboutUs from "../../pages/unAuthenticatedRoutes/AboutUs";
@@ -7,6 +8,7 @@ import ContactUs from "../../pages/unAuthenticatedRoutes/ContactUs";
 import Home from "../../pages/unAuthenticatedRoutes/Home";
 import {
   ABOUT_US,
+  ADMIN_PRODUCTS,
   BRANDS,
   CAREER,
   CART,
@@ -22,10 +24,17 @@ const authenticationRoutes = [
   },
 ];
 
-const authenticatedRoutes = [
+const authenticatedUserRoutes = [
   {
     path: CART,
     component: Cart,
+  },
+];
+
+const authenticatedAdminRoutes = [
+  {
+    path: ADMIN_PRODUCTS,
+    component: AdminProducts,
   },
 ];
 
@@ -52,4 +61,9 @@ const unAuthenticatedRoutes = [
   },
 ];
 
-export { authenticationRoutes, authenticatedRoutes, unAuthenticatedRoutes };
+export {
+  authenticationRoutes,
+  authenticatedUserRoutes,
+  authenticatedAdminRoutes,
+  unAuthenticatedRoutes,
+};
