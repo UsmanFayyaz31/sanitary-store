@@ -55,10 +55,48 @@ router.post("/product", upload.single("image"), async (req, res, next) => {
   });
 });
 
+router.post("/product/:id", upload.single("image"), async (req, res) => {
+  const { filename: image } = req.file;
+
+  await sharp(req.file.path)
+    .jpeg({ quality: 60 })
+    .toFile(path.resolve(req.file.destination, "resized", image));
+  fs.unlinkSync(req.file.path);
+
+  var obj = {
+    product_name: req.body.product_name,
+    product_price: req.body.product_price,
+    product_description: req.body.product_description,
+    img: {
+      data: fs.readFileSync(
+        path.join(__dirname + "/uploads/resized/" + req.file.filename)
+      ),
+      contentType: "image/png",
+    },
+  };
+
+  Product.updateOne({ _id: req.params.id }, obj)
+    .then(() => {
+      res.json({ data: obj, success: true });
+    })
+    .catch((err) => {
+      res.json({ success: false, error, err });
+    });
+});
+
+router.delete("/product/:id", (req, res) => {
+  Product.remove({ _id: req.params.id })
+    .then(() => {
+      res.json({ success: true });
+    })
+    .catch((err) => {
+      res.json({ success: false, error, err });
+    });
+});
+
 router.get("/product", (req, res) => {
   Product.find({}, (err, items) => {
     if (err) {
-      console.log(err);
       res.json({ success: false });
     } else {
       res.json({ data: items, success: true });

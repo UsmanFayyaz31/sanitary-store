@@ -3,9 +3,10 @@ import { Button, Col, Collapse, Row } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { Buffer } from "buffer";
 import CloseIcon from "@material-ui/icons/HighlightOff";
-import EditIcon from "@material-ui/icons/Edit";
+import UpdateIcon from "@material-ui/icons/Edit";
 
 import { PRODUCT } from "../../components/services/constants";
+import ProductUpdateModal from "../../components/modals/ProductUpdateModal";
 
 const AdminProducts = () => {
   const {
@@ -21,6 +22,10 @@ const AdminProducts = () => {
   const [products, setProducts] = useState(null);
   const [addProduct, setAddProduct] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [updateModal, setUpdateModal] = useState(false);
+  const [index, setIndex] = useState(-1);
+
+  const setUpdateModalValue = (value) => setUpdateModal(value);
 
   const getProducts = () => {
     setLoading(true);
@@ -41,8 +46,8 @@ const AdminProducts = () => {
   };
 
   useEffect(() => {
-    getProducts();
-  }, []);
+    if (!updateModal) getProducts();
+  }, [updateModal]);
 
   const onSubmit = (value) => {
     if (inputFile.current.files.length > 0) {
@@ -70,8 +75,29 @@ const AdminProducts = () => {
     }
   };
 
+  const deleteProduct = (id) => {
+    fetch(PRODUCT + id, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          setProducts(products.filter((product) => product._id !== id));
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+
   return (
     <>
+      <ProductUpdateModal
+        updateModal={updateModal}
+        setUpdateModalValue={setUpdateModalValue}
+        products={products}
+        index={index}
+      />
       <Row>
         <Col className="brand-container">
           <h1 className="bordered-title">PRODUCTS</h1>
@@ -179,18 +205,17 @@ const AdminProducts = () => {
                   <th>Product Name</th>
                   <th>Product Price</th>
                   <th>Product Description</th>
-                  <th>Edit</th>
+                  <th>Update</th>
                   <th>Delete</th>
                 </tr>
               </thead>
 
               <tbody>
                 {products &&
-                  products.map((product) => {
+                  products.map((product, idx) => {
                     return (
                       <tr key={product._id}>
                         <td colSpan={2}>
-                          {" "}
                           <img
                             src={`data:image/${
                               product.img.contentType
@@ -205,10 +230,19 @@ const AdminProducts = () => {
                         <td>{product.product_price}</td>
                         <td>{product.product_description}</td>
                         <td>
-                          <EditIcon className="edit-icon" />
+                          <UpdateIcon
+                            className="update-icon"
+                            onClick={() => {
+                              setIndex(idx);
+                              setUpdateModal(true);
+                            }}
+                          />
                         </td>
                         <td>
-                          <CloseIcon className="close-icon" />
+                          <CloseIcon
+                            className="close-icon"
+                            onClick={() => deleteProduct(product._id)}
+                          />
                         </td>
                       </tr>
                     );
