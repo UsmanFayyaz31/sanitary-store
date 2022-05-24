@@ -33,7 +33,7 @@
     object-fit: contain;
   }
 
-  .edit-icon {
+  .update-icon {
     &:hover {
       color: gray;
       cursor: pointer;
@@ -46,4 +46,8 @@
       color: red;
     }
   }
+}
+
+.update-modal {
+  min-width: 500px;
 }
