@@ -2,6 +2,26 @@
 @import "./bootstrap.scss";
 @import "./app.scss";
 
+.loader {
+  border: 12px solid #d1d1d1;
+  border-radius: 50%;
+  border-top: 12px solid #1ec4c4;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .body-content {
   margin-top: 60px;
   min-height: calc(100vh - 60px);

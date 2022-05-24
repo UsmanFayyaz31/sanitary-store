@@ -3,6 +3,7 @@ const User = require("../modals/Users");
 const Product = require("../modals/Products");
 const fs = require("fs");
 const path = require("path");
+const sharp = require("sharp");
 
 const router = express.Router();
 
@@ -21,18 +22,26 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-router.post("/product", upload.single("image"), (req, res, next) => {
+router.post("/product", upload.single("image"), async (req, res, next) => {
+  const { filename: image } = req.file;
+
+  await sharp(req.file.path)
+    .jpeg({ quality: 60 })
+    .toFile(path.resolve(req.file.destination, "resized", image));
+  fs.unlinkSync(req.file.path);
+
   var obj = {
     product_name: req.body.product_name,
     product_price: req.body.product_price,
     product_description: req.body.product_description,
     img: {
       data: fs.readFileSync(
-        path.join(__dirname + "/uploads/" + req.file.filename)
+        path.join(__dirname + "/uploads/resized/" + req.file.filename)
       ),
       contentType: "image/png",
     },
   };
+
   Product.create(obj, (err, item) => {
     if (err) {
       console.log(err);

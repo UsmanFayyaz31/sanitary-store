@@ -1,3 +1,4 @@
+import AdminOrders from "../../pages/authenticated/AdminOrders";
 import AdminProducts from "../../pages/authenticated/AdminProducts";
 import Cart from "../../pages/authenticated/Cart";
 import LoginSignup from "../../pages/authentication/LoginSignup";
@@ -8,6 +9,7 @@ import ContactUs from "../../pages/unAuthenticatedRoutes/ContactUs";
 import Home from "../../pages/unAuthenticatedRoutes/Home";
 import {
   ABOUT_US,
+  ADMIN_ORDERS,
   ADMIN_PRODUCTS,
   BRANDS,
   CAREER,
@@ -35,6 +37,10 @@ const authenticatedAdminRoutes = [
   {
     path: ADMIN_PRODUCTS,
     component: AdminProducts,
+  },
+  {
+    path: ADMIN_ORDERS,
+    component: AdminOrders,
   },
 ];
 
