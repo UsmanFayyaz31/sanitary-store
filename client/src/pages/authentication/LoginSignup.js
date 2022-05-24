@@ -4,6 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
 import {
+  ADMIN_PRODUCTS,
   HOME,
   SIGN_IN_API,
   SIGN_UP_API,
@@ -45,7 +46,11 @@ const LoginSignup = () => {
         if (data.success) {
           localStorage.setItem("authUser", JSON.stringify(data.data[0]));
           window.dispatchEvent(new Event("storage"));
-          history.push(HOME);
+
+          console.log(data.data[0].role);
+
+          if (data.data[0].role === "user") history.push(HOME);
+          else history.push(ADMIN_PRODUCTS);
         } else setLoginErrorMessage("Invalid Credentials.");
       });
   };
