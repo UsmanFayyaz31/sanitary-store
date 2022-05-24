@@ -35,7 +35,7 @@ const Header = () => {
     const user = localStorage.getItem("authUser");
 
     if (JSON.parse(user)) {
-      setUser(user);
+      setUser(JSON.parse(user));
       setIsLogin(true);
     } else setIsLogin(false);
   };
@@ -53,7 +53,33 @@ const Header = () => {
       <div className="navbar-header">
         <div className="d-flex header-navs">
           <Nav pills className="navbar-active-pills">
-            {user && user.role === "user" ? (
+            {user && user.role === "admin" ? (
+              <>
+                <NavItem>
+                  <NavLink
+                    style={{ cursor: "pointer" }}
+                    className={activeTab === "admin-products" ? "active" : ""}
+                    onClick={() => {
+                      toggle("admin-products");
+                    }}
+                  >
+                    <span className="d-none d-sm-block">PRODUCTS</span>
+                  </NavLink>
+                </NavItem>
+
+                <NavItem>
+                  <NavLink
+                    style={{ cursor: "pointer" }}
+                    className={activeTab === "admin-orders" ? "active" : ""}
+                    onClick={() => {
+                      toggle("admin-orders");
+                    }}
+                  >
+                    <span className="d-none d-sm-block">ORDERS</span>
+                  </NavLink>
+                </NavItem>
+              </>
+            ) : (
               <>
                 <NavItem>
                   <NavLink
@@ -112,32 +138,6 @@ const Header = () => {
                     }}
                   >
                     <span className="d-none d-sm-block">CONTACT US</span>
-                  </NavLink>
-                </NavItem>
-              </>
-            ) : (
-              <>
-                <NavItem>
-                  <NavLink
-                    style={{ cursor: "pointer" }}
-                    className={activeTab === "admin-products" ? "active" : ""}
-                    onClick={() => {
-                      toggle("admin-products");
-                    }}
-                  >
-                    <span className="d-none d-sm-block">PRODUCTS</span>
-                  </NavLink>
-                </NavItem>
-
-                <NavItem>
-                  <NavLink
-                    style={{ cursor: "pointer" }}
-                    className={activeTab === "admin-orders" ? "active" : ""}
-                    onClick={() => {
-                      toggle("admin-orders");
-                    }}
-                  >
-                    <span className="d-none d-sm-block">ORDERS</span>
                   </NavLink>
                 </NavItem>
               </>
