@@ -47,8 +47,6 @@ const LoginSignup = () => {
           localStorage.setItem("authUser", JSON.stringify(data.data[0]));
           window.dispatchEvent(new Event("storage"));
 
-          console.log(data.data[0].role);
-
           if (data.data[0].role === "user") history.push(HOME);
           else history.push(ADMIN_PRODUCTS);
         } else setLoginErrorMessage("Invalid Credentials.");
