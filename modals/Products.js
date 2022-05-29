@@ -7,7 +7,7 @@ var ProductSchema = new mongoose.Schema(
       required: [true, "can't be blank"],
     },
     product_price: {
-      type: String,
+      type: Number,
       required: [true, "can't be blank"],
     },
     product_description: {

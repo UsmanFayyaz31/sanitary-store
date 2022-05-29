@@ -60,6 +60,7 @@ const LoginSignup = () => {
         email: data.sign_up_email,
         password: data.sign_up_password,
         phoneNumber: data.phoneNumber,
+        address: data.address,
         role: "user",
       }),
       headers: {
@@ -230,6 +231,22 @@ const LoginSignup = () => {
                   <p className="signup-error">
                     {signUpErrors.sign_up_password.message}
                   </p>
+                )}
+
+                <label style={{ marginTop: "18px" }}>Address:</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Enter Your Address."
+                  {...signUpRegister("address", {
+                    required: {
+                      value: true,
+                      message: "Please enter address to continue.",
+                    },
+                  })}
+                />
+                {signUpErrors.address && (
+                  <p className="signup-error">{signUpErrors.address.message}</p>
                 )}
 
                 {signupErrorMessage !== "" && (

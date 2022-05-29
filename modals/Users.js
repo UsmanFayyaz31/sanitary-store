@@ -26,6 +26,10 @@ var UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "can't be blank"],
     },
+    address: {
+      type: String,
+      required: [true, "can't be blank"],
+    },
   },
   { timestamps: true }
 );

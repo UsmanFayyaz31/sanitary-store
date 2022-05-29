@@ -65,7 +65,7 @@ const Products = () => {
                           className="department-images"
                         />
                         <h3>{val.product_name}</h3>
-                        <h6>{"RS " + val.product_price}</h6>
+                        <h6>{"$ " + val.product_price}</h6>
                       </div>
                     </Link>
                   </Col>

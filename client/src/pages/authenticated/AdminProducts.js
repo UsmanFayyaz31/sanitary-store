@@ -54,7 +54,10 @@ const AdminProducts = () => {
       var data = new FormData();
       data.append("image", inputFile.current.files[0]);
       data.append("product_description", value.product_description);
-      data.append("product_name", value.product_name);
+      data.append(
+        "product_name",
+        value.product_name.charAt(0).toUpperCase() + value.product_name.slice(1)
+      );
       data.append("product_price", value.product_price);
 
       fetch(PRODUCT_API, {
@@ -138,7 +141,7 @@ const AdminProducts = () => {
               <label style={{ marginTop: "18px" }}>Product Price:</label>
               <input
                 className="form-control"
-                type="text"
+                type="number"
                 name="product_price"
                 placeholder="Enter Product Price."
                 {...register("product_price", {
