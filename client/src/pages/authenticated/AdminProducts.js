@@ -5,7 +5,7 @@ import { Buffer } from "buffer";
 import CloseIcon from "@material-ui/icons/HighlightOff";
 import UpdateIcon from "@material-ui/icons/Edit";
 
-import { PRODUCT } from "../../components/services/constants";
+import { PRODUCT_API } from "../../components/services/constants";
 import ProductUpdateModal from "../../components/modals/ProductUpdateModal";
 
 const AdminProducts = () => {
@@ -29,7 +29,7 @@ const AdminProducts = () => {
 
   const getProducts = () => {
     setLoading(true);
-    fetch(PRODUCT, {
+    fetch(PRODUCT_API, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const AdminProducts = () => {
       data.append("product_name", value.product_name);
       data.append("product_price", value.product_price);
 
-      fetch(PRODUCT, {
+      fetch(PRODUCT_API, {
         method: "POST",
         body: data,
       })
@@ -76,7 +76,7 @@ const AdminProducts = () => {
   };
 
   const deleteProduct = (id) => {
-    fetch(PRODUCT + id, {
+    fetch(PRODUCT_API + id, {
       method: "DELETE",
     })
       .then((response) => response.json())

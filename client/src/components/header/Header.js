@@ -12,6 +12,7 @@ import {
   SIGN_IN,
   ADMIN_PRODUCTS,
   ADMIN_ORDERS,
+  CART,
 } from "../services/constants";
 
 const Header = () => {
@@ -20,6 +21,33 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState("");
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState(null);
+  const [itemCount, setItemCount] = useState(0);
+
+  const getItemCount = () => {
+    const cart = localStorage.getItem("cart");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user) setIsLogin(true);
+    else setIsLogin(false);
+
+    if (cart) {
+      const items = JSON.parse(cart);
+      var count = 0;
+      if (items && items.data.length > 0) {
+        items.data.map((val) => {
+          count = count + val.quantity;
+        });
+      }
+      setItemCount(count);
+    } else {
+      setItemCount(0);
+    }
+  };
+
+  useEffect(() => {
+    getItemCount();
+    window.addEventListener("storage", getItemCount);
+  }, []);
 
   const toggle = (tab) => {
     if (tab === "") history.push(HOME);
@@ -146,6 +174,13 @@ const Header = () => {
         </div>
 
         <div className="login-cart-container">
+          {(!user || user.role === "user") && (
+            <div className="cart-container" onClick={() => history.push(CART)}>
+              <ShoppingCartIcon className="cart-icon" />
+              {itemCount > 0 && <p className="cart-number">{itemCount}</p>}
+            </div>
+          )}
+
           {isLogin ? (
             <Button
               className="login-button"
@@ -165,7 +200,6 @@ const Header = () => {
               LOGIN
             </Button>
           )}
-          {user && user.role === "user" && <ShoppingCartIcon />}
         </div>
       </div>
     </header>

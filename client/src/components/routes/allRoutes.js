@@ -28,12 +28,7 @@ const authenticationRoutes = [
   },
 ];
 
-const authenticatedUserRoutes = [
-  {
-    path: CART,
-    component: Cart,
-  },
-];
+const authenticatedUserRoutes = [];
 
 const authenticatedAdminRoutes = [
   {
@@ -70,6 +65,10 @@ const unAuthenticatedRoutes = [
   {
     path: PRODUCT,
     component: ProductDetail,
+  },
+  {
+    path: CART,
+    component: Cart,
   },
 ];
 

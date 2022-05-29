@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import { Buffer } from "buffer";
+import { useHistory } from "react-router-dom";
 
-import { PRODUCT_API } from "../../components/services/constants";
+import { CART, PRODUCT_API } from "../../components/services/constants";
 
 const ProductDetail = (props) => {
+  const history = useHistory();
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,6 +27,43 @@ const ProductDetail = (props) => {
         console.log("error", err);
       });
   }, []);
+
+  const addDataToLocalStorage = () => {
+    var exsistingItem = JSON.parse(localStorage.getItem("cart"));
+
+    var isRepeat = false;
+
+    if (exsistingItem && exsistingItem.data.length >= 1) {
+      for (var i = 0; i < exsistingItem.data.length; i++) {
+        if (exsistingItem.data[i]._id === product._id) {
+          exsistingItem.data[i].quantity = exsistingItem.data[i].quantity + 1;
+          localStorage.setItem("cart", JSON.stringify(exsistingItem));
+          window.dispatchEvent(new Event("storage"));
+          isRepeat = true;
+          break;
+        }
+      }
+
+      if (!isRepeat) {
+        let temp = product[0];
+        temp.quantity = 1;
+        exsistingItem.data.push(temp);
+        localStorage.setItem("cart", JSON.stringify(exsistingItem));
+        window.dispatchEvent(new Event("storage"));
+      }
+    } else {
+      let temp = product[0];
+      temp.quantity = 1;
+      localStorage.setItem("cart", JSON.stringify({ data: [temp] }));
+      window.dispatchEvent(new Event("storage"));
+    }
+  };
+
+  const handleBuyNow = () => {
+    addDataToLocalStorage();
+
+    history.push(CART);
+  };
 
   return (
     <div>
@@ -51,7 +90,7 @@ const ProductDetail = (props) => {
                                   product[0].img.data
                                 ).toString("base64")}`}
                                 alt="product"
-                                className="img-fluid mx-auto d-block tab-img rounded"
+                                className="product-image img-fluid mx-auto d-block tab-img rounded"
                               />
                             </Col>
 
@@ -61,7 +100,7 @@ const ProductDetail = (props) => {
                                   type="button"
                                   color="primary"
                                   className="btn-block waves-effect waves-light mt-2 me-1"
-                                  // onClick={() => addDataToLocalStorage()}
+                                  onClick={() => addDataToLocalStorage()}
                                 >
                                   <i className="uil uil-shopping-cart-alt me-2"></i>{" "}
                                   Add to cart
@@ -72,7 +111,7 @@ const ProductDetail = (props) => {
                                   type="button"
                                   color="light"
                                   className="btn-block waves-effect mt-2 waves-light buy-now-button"
-                                  // onClick={() => handleBuyNow()}
+                                  onClick={() => handleBuyNow()}
                                 >
                                   <i className="uil uil-shopping-basket me-2"></i>
                                   Buy now
