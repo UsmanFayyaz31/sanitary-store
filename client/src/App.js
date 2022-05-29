@@ -68,6 +68,7 @@ const App = () => {
             component={route.component}
             key={idx}
             isAuthProtected={false}
+            exact={true}
           />
         ))}
       </Switch>

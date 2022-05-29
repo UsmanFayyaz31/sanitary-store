@@ -15,8 +15,9 @@ export const ABOUT_US = "/about-us";
 export const BRANDS = "/brands";
 export const CAREER = "/career";
 export const CONTACT_US = "/contact-us";
+export const PRODUCT = "/product/:id";
 
 //endPoints
 export const SIGN_IN_API = BASE_URL + "/api/sign-in/";
 export const SIGN_UP_API = BASE_URL + "/api/sign-up/";
-export const PRODUCT = BASE_URL + "/api/product/";
+export const PRODUCT_API = BASE_URL + "/api/product/";

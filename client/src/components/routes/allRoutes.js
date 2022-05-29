@@ -7,6 +7,7 @@ import Brands from "../../pages/unAuthenticatedRoutes/Brands";
 import Career from "../../pages/unAuthenticatedRoutes/Career";
 import ContactUs from "../../pages/unAuthenticatedRoutes/ContactUs";
 import Home from "../../pages/unAuthenticatedRoutes/Home";
+import ProductDetail from "../../pages/unAuthenticatedRoutes/ProductDetail";
 import {
   ABOUT_US,
   ADMIN_ORDERS,
@@ -16,6 +17,7 @@ import {
   CART,
   CONTACT_US,
   HOME,
+  PRODUCT,
   SIGN_IN,
 } from "../services/constants";
 
@@ -64,6 +66,10 @@ const unAuthenticatedRoutes = [
   {
     path: HOME,
     component: Home,
+  },
+  {
+    path: PRODUCT,
+    component: ProductDetail,
   },
 ];
 

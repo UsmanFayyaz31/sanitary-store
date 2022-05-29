@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { Buffer } from "buffer";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-import { PRODUCT } from "../services/constants";
+import { PRODUCT_API } from "../services/constants";
 
 const Products = () => {
+  const history = useHistory();
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    fetch(PRODUCT, {
+    fetch(PRODUCT_API, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +50,10 @@ const Products = () => {
                     md={3}
                     className="department-content"
                   >
-                    <Link to="#">
+                    <Link
+                      to="#"
+                      onClick={() => history.push(`/product/${val._id}`)}
+                    >
                       <div className="department">
                         <img
                           src={`data:image/${

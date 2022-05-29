@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Modal } from "reactstrap";
-import { PRODUCT } from "../services/constants";
+import { PRODUCT_API } from "../services/constants";
 
 const ProductUpdateModal = (props) => {
   const { updateModal, setUpdateModalValue, products, index } = props;
@@ -34,7 +34,7 @@ const ProductUpdateModal = (props) => {
       data.append("product_price", value.product_price);
 
       if (products)
-        fetch(PRODUCT + products[index]._id, {
+        fetch(PRODUCT_API + products[index]._id, {
           method: "POST",
           body: data,
         })
