@@ -22,6 +22,16 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
+router.get("/product/:id", (req, res) => {
+  Product.find({ _id: req.params.id }, (err, items) => {
+    if (err) {
+      res.json({ success: false });
+    } else {
+      res.json({ data: items, success: true });
+    }
+  });
+});
+
 router.post("/product", upload.single("image"), async (req, res, next) => {
   const { filename: image } = req.file;
 

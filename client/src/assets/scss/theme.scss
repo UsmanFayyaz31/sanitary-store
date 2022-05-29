@@ -2,6 +2,11 @@
 @import "./bootstrap.scss";
 @import "./app.scss";
 
+.loader-container {
+  min-height: calc(100vh - 60px);
+  display: flex;
+}
+
 .loader {
   border: 12px solid #d1d1d1;
   border-radius: 50%;
@@ -23,7 +28,7 @@
 }
 
 .body-content {
-  margin-top: 60px;
+  margin-top: 75px;
   min-height: calc(100vh - 60px);
 
   .row {

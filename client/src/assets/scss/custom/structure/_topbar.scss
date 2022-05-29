@@ -266,12 +266,40 @@
   .login-cart-container {
     position: absolute;
     right: 20px;
+    display: flex;
 
     .login-button {
       color: #fff;
       background-color: #1b1e23;
       border-color: #1b1e23;
-      margin-right: 15px;
+      margin-left: 10px;
+    }
+
+    .cart-container {
+      display: flex;
+      margin: 0px 2px 0px 4px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .cart-icon {
+        font-size: 20px;
+        margin: auto;
+      }
+
+      .cart-number {
+        background-color: black;
+        color: white;
+        padding: 2px;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 
