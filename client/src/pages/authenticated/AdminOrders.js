@@ -19,7 +19,6 @@ const AdminOrders = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("Debugging", result);
         setLoading(false);
         setOrders(result.data);
       })
@@ -29,8 +28,8 @@ const AdminOrders = () => {
   };
 
   const getDate = (date) => {
-    let yourDate = new Date(date);
-    return yourDate.toISOString().split("T")[0];
+    let tempDate = new Date(date);
+    return tempDate.toISOString().replace(/T/, " ").replace(/\..+/, "");
   };
 
   return (
