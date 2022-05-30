@@ -19,7 +19,6 @@ const ProductDetail = (props) => {
     })
       .then((response) => response.json())
       .then((res) => {
-        console.log("result", res);
         setProduct(res.data);
         setIsLoading(false);
       })
@@ -28,14 +27,14 @@ const ProductDetail = (props) => {
       });
   }, []);
 
-  const addDataToLocalStorage = () => {
+  const addDataToLocalStorage = (productId) => {
     var exsistingItem = JSON.parse(localStorage.getItem("cart"));
 
     var isRepeat = false;
 
     if (exsistingItem && exsistingItem.data.length >= 1) {
       for (var i = 0; i < exsistingItem.data.length; i++) {
-        if (exsistingItem.data[i]._id === product._id) {
+        if (exsistingItem.data[i]._id === productId) {
           exsistingItem.data[i].quantity = exsistingItem.data[i].quantity + 1;
           localStorage.setItem("cart", JSON.stringify(exsistingItem));
           window.dispatchEvent(new Event("storage"));
@@ -60,7 +59,7 @@ const ProductDetail = (props) => {
   };
 
   const handleBuyNow = () => {
-    addDataToLocalStorage();
+    addDataToLocalStorage(product[0]._id);
 
     history.push(CART);
   };
@@ -100,7 +99,9 @@ const ProductDetail = (props) => {
                                   type="button"
                                   color="primary"
                                   className="btn-block waves-effect waves-light mt-2 me-1"
-                                  onClick={() => addDataToLocalStorage()}
+                                  onClick={() =>
+                                    addDataToLocalStorage(product[0]._id)
+                                  }
                                 >
                                   <i className="uil uil-shopping-cart-alt me-2"></i>{" "}
                                   Add to cart
