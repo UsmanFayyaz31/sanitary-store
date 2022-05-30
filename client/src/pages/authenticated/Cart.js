@@ -14,7 +14,7 @@ import { Buffer } from "buffer";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import { HOME, SIGN_IN } from "../../components/services/constants";
+import { HOME, ORDER_API, SIGN_IN } from "../../components/services/constants";
 
 const Cart = () => {
   const [productList, setproductList] = useState(null);
@@ -79,35 +79,41 @@ const Cart = () => {
   };
 
   const placeOrder = () => {
-    // if (user) {
-    //   productList.map((val, idx) => {
-    //     console.log(
-    //       "debugging user cart",
-    //       {
-    //         product_id: val.id,
-    //         user_id: user.id,
-    //         quantity: val.quantity,
-    //       },
-    //       user
-    //     );
-    //     postRequest(ORDERS, {
-    //       order: {
-    //         product_id: val.id,
-    //         user_id: user.id,
-    //         quantity: val.quantity,
-    //       },
-    //     })
-    //       .then((res) => {
-    //         console.log("Res", res);
-    //         setproductList(null);
-    //         localStorage.setItem("cart", null);
-    //         window.dispatchEvent(new Event("storage"));
-    //       })
-    //       .catch((err) => {
-    //         console.log("err", err);
-    //       });
-    //   });
-    // }
+    if (user) {
+      let temp = [];
+
+      productList.forEach((product) => {
+        temp.push({
+          product_id: product._id,
+          user_id: user._id,
+          quantity: product.quantity,
+          amount: product.quantity * product.product_price,
+          product_name: product.product_name,
+          product_price: product.product_price,
+          user_email: user.email,
+          user_address: user.address,
+        });
+      });
+
+      fetch(ORDER_API, {
+        method: "POST",
+        body: JSON.stringify([...temp]),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          if (res.success) {
+            setproductList(null);
+            localStorage.setItem("cart", null);
+            window.dispatchEvent(new Event("storage"));
+          }
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    }
   };
 
   return (

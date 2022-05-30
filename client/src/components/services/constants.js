@@ -21,3 +21,4 @@ export const PRODUCT = "/product/:id";
 export const SIGN_IN_API = BASE_URL + "/api/sign-in/";
 export const SIGN_UP_API = BASE_URL + "/api/sign-up/";
 export const PRODUCT_API = BASE_URL + "/api/product/";
+export const ORDER_API = BASE_URL + "/api/order/";

@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../modals/Users");
 const Product = require("../modals/Products");
+const Order = require("../modals/Orders");
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
@@ -147,6 +148,39 @@ router.post("/sign-in", (req, res) => {
     .catch((error) => {
       console.log("error: ", error);
     });
+});
+
+router.post("/order", (req, res) => {
+  const data = req.body;
+  let isSaved = true;
+
+  data.forEach((order) => {
+    const tempOrder = new Order(order);
+
+    Order.create(tempOrder, (err, item) => {
+      if (err) {
+        console.log(err);
+        isSaved = false;
+        res.json({ success: false });
+      }
+    });
+
+    if (isSaved)
+      return res.json({
+        msg: "Your data has been saved!!!!!!",
+        success: true,
+      });
+  });
+});
+
+router.get("/order", (req, res) => {
+  Order.find({}, (err, orders) => {
+    if (err) {
+      res.json({ success: false });
+    } else {
+      res.json({ data: orders, success: true });
+    }
+  });
 });
 
 module.exports = router;
