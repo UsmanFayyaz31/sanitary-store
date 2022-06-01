@@ -37,7 +37,7 @@ router.post("/product", upload.single("image"), async (req, res, next) => {
   const { filename: image } = req.file;
 
   await sharp(req.file.path)
-    .jpeg({ quality: 60 })
+    .png({ quality: 60 })
     .toFile(path.resolve(req.file.destination, "resized", image));
   fs.unlinkSync(req.file.path);
 
@@ -45,6 +45,7 @@ router.post("/product", upload.single("image"), async (req, res, next) => {
     product_name: req.body.product_name,
     product_price: req.body.product_price,
     product_description: req.body.product_description,
+    image_display: req.body.image_display,
     img: {
       data: fs.readFileSync(
         path.join(__dirname + "/uploads/resized/" + req.file.filename)
@@ -70,7 +71,7 @@ router.post("/product/:id", upload.single("image"), async (req, res) => {
   const { filename: image } = req.file;
 
   await sharp(req.file.path)
-    .jpeg({ quality: 60 })
+    .png({ quality: 60 })
     .toFile(path.resolve(req.file.destination, "resized", image));
   fs.unlinkSync(req.file.path);
 
@@ -78,6 +79,7 @@ router.post("/product/:id", upload.single("image"), async (req, res) => {
     product_name: req.body.product_name,
     product_price: req.body.product_price,
     product_description: req.body.product_description,
+    image_display: req.body.image_display,
     img: {
       data: fs.readFileSync(
         path.join(__dirname + "/uploads/resized/" + req.file.filename)

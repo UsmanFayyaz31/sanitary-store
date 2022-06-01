@@ -5,9 +5,9 @@ import Products from "../../components/home/Products";
 const Home = () => {
   return (
     <div>
-      <Department />
-
       <Products />
+
+      <Department />
     </div>
   );
 };

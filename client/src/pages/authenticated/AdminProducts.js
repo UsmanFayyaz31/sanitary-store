@@ -24,6 +24,7 @@ const AdminProducts = () => {
   const [loading, setLoading] = useState(true);
   const [updateModal, setUpdateModal] = useState(false);
   const [index, setIndex] = useState(-1);
+  const [imageDisplay, setImageDisplay] = useState(false);
 
   const setUpdateModalValue = (value) => setUpdateModal(value);
 
@@ -59,6 +60,7 @@ const AdminProducts = () => {
         value.product_name.charAt(0).toUpperCase() + value.product_name.slice(1)
       );
       data.append("product_price", value.product_price);
+      data.append("image_display", imageDisplay);
 
       fetch(PRODUCT_API, {
         method: "POST",
@@ -175,6 +177,17 @@ const AdminProducts = () => {
                   {errors.product_description.message}
                 </p>
               )}
+
+              <div style={{ display: "flex", marginTop: "18px" }}>
+                <label style={{ marginBottom: "0px" }}>Image Display:</label>
+                <input
+                  type="checkbox"
+                  name="image_display"
+                  style={{ marginLeft: "8px" }}
+                  checked={imageDisplay}
+                  onClick={() => setImageDisplay(!imageDisplay)}
+                />
+              </div>
 
               <label style={{ marginTop: "18px" }}>Product Image</label>
               <br />
