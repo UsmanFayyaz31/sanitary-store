@@ -4,6 +4,7 @@ import { Buffer } from "buffer";
 import { useHistory } from "react-router-dom";
 
 import { CART, PRODUCT_API } from "../../components/services/constants";
+import ThreeDModal from "../../components/home/ThreeDModal";
 
 const ProductDetail = (props) => {
   const history = useHistory();
@@ -81,17 +82,27 @@ const ProductDetail = (props) => {
                       <Col xl="12">
                         <div className="product-detail">
                           <Row>
-                            <Col>
-                              <img
-                                src={`data:image/${
-                                  product[0].img.contentType
-                                };base64,${Buffer.from(
-                                  product[0].img.data
-                                ).toString("base64")}`}
-                                alt="product"
-                                className="product-image img-fluid mx-auto d-block tab-img rounded"
-                              />
-                            </Col>
+                            {product[0].image_display ? (
+                              <Col>
+                                <img
+                                  src={`data:image/${
+                                    product[0].img.contentType
+                                  };base64,${Buffer.from(
+                                    product[0].img.data
+                                  ).toString("base64")}`}
+                                  alt="product"
+                                  className="product-image img-fluid mx-auto d-block tab-img rounded"
+                                />
+                              </Col>
+                            ) : (
+                              <Col>
+                                <Card>
+                                  <CardBody>
+                                    <ThreeDModal productId={product[0]._id} />
+                                  </CardBody>
+                                </Card>
+                              </Col>
+                            )}
 
                             <Row className="text-center mt-3 mb-1 justify-content-center">
                               <div className="col-sm-4 d-grid">

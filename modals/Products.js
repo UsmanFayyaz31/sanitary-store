@@ -14,6 +14,10 @@ var ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, "can't be blank"],
     },
+    image_display: {
+      type: Boolean,
+      required: [true, "can't be blank"],
+    },
     img: {
       data: Buffer,
       contentType: String,

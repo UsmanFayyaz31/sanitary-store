@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Modal } from "reactstrap";
+import { Modal } from "reactstrap";
 import { PRODUCT_API } from "../services/constants";
 
 const ProductUpdateModal = (props) => {
   const { updateModal, setUpdateModalValue, products, index } = props;
+
+  const [imageDisplay, setImageDisplay] = useState(false);
 
   const {
     register,
@@ -32,6 +34,7 @@ const ProductUpdateModal = (props) => {
       data.append("product_description", value.product_description);
       data.append("product_name", value.product_name);
       data.append("product_price", value.product_price);
+      data.append("image_display", imageDisplay);
 
       if (products)
         fetch(PRODUCT_API + products[index]._id, {
@@ -125,6 +128,17 @@ const ProductUpdateModal = (props) => {
               {errors.product_description.message}
             </p>
           )}
+
+          <div style={{ display: "flex", marginTop: "18px" }}>
+            <label style={{ marginBottom: "0px" }}>Image Display:</label>
+            <input
+              type="checkbox"
+              name="image_display"
+              style={{ marginLeft: "8px" }}
+              checked={imageDisplay}
+              onClick={() => setImageDisplay(!imageDisplay)}
+            />
+          </div>
 
           <label style={{ marginTop: "18px" }}>Product Image</label>
           <br />
