@@ -100,6 +100,7 @@ const Cart = () => {
         body: JSON.stringify([...temp]),
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
       })
         .then((response) => response.json())

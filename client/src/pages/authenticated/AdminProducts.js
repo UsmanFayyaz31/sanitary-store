@@ -34,6 +34,7 @@ const AdminProducts = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     })
       .then((response) => response.json())
@@ -65,6 +66,9 @@ const AdminProducts = () => {
       fetch(PRODUCT_API, {
         method: "POST",
         body: data,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
       })
         .then((response) => response.json())
         .then((result) => {
@@ -83,6 +87,9 @@ const AdminProducts = () => {
   const deleteProduct = (id) => {
     fetch(PRODUCT_API + id, {
       method: "DELETE",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     })
       .then((response) => response.json())
       .then((result) => {
@@ -185,7 +192,7 @@ const AdminProducts = () => {
                   name="image_display"
                   style={{ marginLeft: "8px" }}
                   checked={imageDisplay}
-                  onClick={() => setImageDisplay(!imageDisplay)}
+                  onChange={() => setImageDisplay(!imageDisplay)}
                 />
               </div>
 

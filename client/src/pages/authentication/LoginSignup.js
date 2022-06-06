@@ -39,6 +39,7 @@ const LoginSignup = () => {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     })
       .then((response) => response.json())
@@ -65,6 +66,7 @@ const LoginSignup = () => {
       }),
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     })
       .then((response) => response.json())

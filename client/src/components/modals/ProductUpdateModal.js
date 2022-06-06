@@ -40,6 +40,9 @@ const ProductUpdateModal = (props) => {
         fetch(PRODUCT_API + products[index]._id, {
           method: "POST",
           body: data,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
         })
           .then((response) => response.json())
           .then((result) => {
@@ -136,7 +139,7 @@ const ProductUpdateModal = (props) => {
               name="image_display"
               style={{ marginLeft: "8px" }}
               checked={imageDisplay}
-              onClick={() => setImageDisplay(!imageDisplay)}
+              onChange={() => setImageDisplay(!imageDisplay)}
             />
           </div>
 
