@@ -15,6 +15,8 @@ npm start
 
 # For adding products
 
+npm install -g gltf-pipeline
+
 gltf-pipeline -i scene.gltf -o output.glb
 
 gltf-pipeline -i output.glb -o compressed.glb --draco.compressionLevel=10
