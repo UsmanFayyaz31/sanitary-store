@@ -6,6 +6,7 @@ import Tape from "./Tape";
 import PipeWrench from "./PipeWrench";
 import Shower from "./Shower";
 import SinkTap from "./SinkTap";
+import BathAndTub from "./BathAndTub";
 
 export default function ThreeDModal(props) {
   const { productId } = props;
@@ -22,6 +23,7 @@ export default function ThreeDModal(props) {
         {productId === "62971fd6c5e62d5587f604d1" && <PipeWrench />}
         {productId === "629747fdc5e62d5587f60558" && <Shower />}
         {productId === "62974af1c5e62d5587f60570" && <SinkTap />}
+        {productId === "62a4f1d030a8ed0a564ed28e" && <BathAndTub />}
 
         <Environment preset="warehouse" />
 
