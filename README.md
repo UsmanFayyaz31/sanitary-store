@@ -4,6 +4,7 @@ Install node and npm version on your machine versions are listed below
 
 node version: 14.18.1
 npm version: 6.14.15
+npm install -g gltf-pipeline
 
 clone the project
 
@@ -14,8 +15,6 @@ run client side in clients folder by using
 npm start
 
 # For adding products
-
-npm install -g gltf-pipeline
 
 gltf-pipeline -i scene.gltf -o output.glb
 
