@@ -12,7 +12,7 @@ const app = express();
 mongoose.connect(
   "mongodb+srv://usmanfayyaz31:usmanfayyaz5336@cluster0.0xxcz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   {
-    useNewUrlParser: true,
+    useNewUrlParser: false,
     useUnifiedTopology: true,
   }
 );
