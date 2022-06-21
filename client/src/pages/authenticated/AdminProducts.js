@@ -25,6 +25,7 @@ const AdminProducts = () => {
   const [updateModal, setUpdateModal] = useState(false);
   const [index, setIndex] = useState(-1);
   const [imageDisplay, setImageDisplay] = useState(false);
+  const [fileError, setFileError] = useState(false);
 
   const setUpdateModalValue = (value) => setUpdateModal(value);
 
@@ -53,6 +54,7 @@ const AdminProducts = () => {
 
   const onSubmit = (value) => {
     if (inputFile.current.files.length > 0) {
+      setFileError(false);
       var data = new FormData();
       data.append("image", inputFile.current.files[0]);
       data.append("product_description", value.product_description);
@@ -81,7 +83,7 @@ const AdminProducts = () => {
         .catch((error) => {
           console.log("error", error);
         });
-    }
+    } else setFileError(true);
   };
 
   const deleteProduct = (id) => {
@@ -199,6 +201,11 @@ const AdminProducts = () => {
               <label style={{ marginTop: "18px" }}>Product Image</label>
               <br />
               <input ref={inputFile} type="file" />
+              {fileError && (
+                <p className="add-product-error">
+                  Please select Image to upload.
+                </p>
+              )}
 
               <div style={{ textAlign: "center" }}>
                 <button

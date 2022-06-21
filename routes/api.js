@@ -98,7 +98,7 @@ router.post("/product/:id", upload.single("image"), async (req, res) => {
 });
 
 router.delete("/product/:id", (req, res) => {
-  Product.remove({ _id: req.params.id })
+  Product.deleteOne({ _id: req.params.id })
     .then(() => {
       res.json({ success: true });
     })
