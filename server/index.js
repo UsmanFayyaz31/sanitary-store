@@ -21,7 +21,7 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected!!!!");
 });
 
-app.options("*", cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
