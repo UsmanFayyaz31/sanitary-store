@@ -20,6 +20,7 @@ const AdminProducts = () => {
   const inputFile = useRef(null);
 
   const [products, setProducts] = useState(null);
+  const [addProductLoading, setAddProductLoading] = useState(false);
   const [addProduct, setAddProduct] = useState(false);
   const [loading, setLoading] = useState(true);
   const [updateModal, setUpdateModal] = useState(false);
@@ -65,6 +66,7 @@ const AdminProducts = () => {
       data.append("product_price", value.product_price);
       data.append("image_display", imageDisplay);
 
+      setAddProductLoading(true);
       fetch(PRODUCT_API, {
         method: "POST",
         body: data,
@@ -75,6 +77,7 @@ const AdminProducts = () => {
         .then((response) => response.json())
         .then((result) => {
           if (result.success) {
+            setAddProductLoading(false);
             reset();
             setAddProduct(false);
             getProducts();
@@ -83,7 +86,10 @@ const AdminProducts = () => {
         .catch((error) => {
           console.log("error", error);
         });
-    } else setFileError(true);
+    } else {
+      setAddProductLoading(false);
+      setFileError(true);
+    }
   };
 
   const deleteProduct = (id) => {
@@ -208,13 +214,17 @@ const AdminProducts = () => {
               )}
 
               <div style={{ textAlign: "center" }}>
-                <button
-                  style={{ marginBottom: "18px" }}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  Add
-                </button>
+                {addProductLoading ? (
+                  <div className="loader"></div>
+                ) : (
+                  <button
+                    style={{ marginBottom: "18px" }}
+                    type="submit"
+                    className="btn btn-primary"
+                  >
+                    Add
+                  </button>
+                )}
               </div>
             </form>
           </Collapse>
