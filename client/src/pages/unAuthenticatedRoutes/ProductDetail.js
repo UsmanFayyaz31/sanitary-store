@@ -82,7 +82,12 @@ const ProductDetail = (props) => {
                     <Row>
                       <Col xl="12">
                         <div className="product-detail">
-                          <Row>
+                          <Row
+                            style={{
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
                             {product[0].image_display ? (
                               <Col>
                                 <img
@@ -96,13 +101,55 @@ const ProductDetail = (props) => {
                                 />
                               </Col>
                             ) : (
-                              <Col>
-                                <Card>
-                                  <CardBody>
-                                    <ThreeDModal productId={product[0]._id} />
-                                  </CardBody>
-                                </Card>
-                              </Col>
+                              <>
+                                {product[0]._id ===
+                                  "62c3e49d80f78cc62db2149b" && (
+                                  <Col xs={2}>
+                                    <img
+                                      src="/tap_qr.jpeg"
+                                      style={{ width: "100%" }}
+                                    />
+                                  </Col>
+                                )}
+
+                                {product[0]._id ===
+                                  "62c3e4ee80f78cc62db214a4" && (
+                                  <Col xs={2}>
+                                    <img
+                                      src="/shower_qr.jpeg"
+                                      style={{ width: "100%" }}
+                                    />
+                                  </Col>
+                                )}
+
+                                {product[0]._id ===
+                                  "62c3e5b180f78cc62db214ad" && (
+                                  <Col xs={2}>
+                                    <img
+                                      src="/sink_tap_qr.jpeg"
+                                      style={{ width: "100%" }}
+                                    />
+                                  </Col>
+                                )}
+
+                                {product[0]._id ===
+                                  "62c3e5ef80f78cc62db214b6" && (
+                                  <Col xs={2}>
+                                    <img
+                                      src="/bath_tub_qr.jpeg"
+                                      style={{ width: "100%" }}
+                                    />
+                                  </Col>
+                                )}
+
+                                <Col xs={10}>
+                                  <Card>
+                                    <CardBody>
+                                      <ThreeDModal productId={product[0]._id} />
+                                    </CardBody>
+                                  </Card>
+                                </Col>
+                              </>
                             )}
 
                             <Row className="text-center mt-3 mb-1 justify-content-center">
